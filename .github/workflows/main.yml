@@ -1,0 +1,14 @@
+name: test
+on:
+  issue_comment:
+    types: [created, deleted]
+jobs:
+  create_commit:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Discord notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+      with:
+        args: 'The project has been deployed.'
