@@ -1,7 +1,7 @@
 name: test
 on:
-  issue_comment:
-    types: [created, deleted]
+  schedule:
+    - cron:  '* * * * *'
 jobs:
   create_commit:
     runs-on: ubuntu-latest
@@ -11,4 +11,4 @@ jobs:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master
       with:
-        args: 'The project has been deployed.'
+        args: ${{GITHUB_SHA}}
