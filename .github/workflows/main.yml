@@ -6,10 +6,14 @@ jobs:
   create_commit:
     runs-on: ubuntu-latest
     steps:
-    - name: Dump GitHub context
+    - name: "Debug: Context"
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
+    - name: "Debug: Shell"
+      run: |
+        whoami
+        id
     - name: Discord notification
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
